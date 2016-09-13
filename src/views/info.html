@@ -1,0 +1,12 @@
+<div id="info" class="row">
+    <div>
+        <div class="pull-left ">
+            <img class="image" ng-src="{{info[0].image}}"/>
+        </div>
+        <div class="name">{{info[0].name}}</div>
+        <div class="address" ng-repeat="add in info[0].address track by $index">{{add}}</div>
+        <div class="phone">{{item.phone}}</div>
+        <img class="ratingImage" ng-src="{{info[0].ratingImage}}"/>
+        <button id="backButton" value="Search" ui-sref="business" ng-click="onSubmitClick($event)">Back</button>
+    </div>
+</div>
