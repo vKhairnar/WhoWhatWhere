@@ -1,4 +1,4 @@
-app.controller("mainController", function ($http, $scope, NgMap, yelpData, foursqureData,$location) {
+app.controller("mainController", function ($http, $scope, NgMap, yelpData, foursquareData,$location) {
 
     NgMap.getMap().then(function (map) {
         $scope.map = map;
@@ -29,7 +29,7 @@ app.controller("mainController", function ($http, $scope, NgMap, yelpData, fours
         }).then(function successCallback(response) {
             var responceDataBoth = response.data;
             var yelpFiltereddata = yelpData.yelpFilterData(responceDataBoth.ydata);
-            var foresqFilteredData = foursqureData.foursqureFilterData(responceDataBoth.venues);
+            var foresqFilteredData = foursquareData.foursquareFilterData(responceDataBoth.venues);
             if(_.isUndefined(yelpFiltereddata)){
                  margeData =  foresqFilteredData;
             }else{

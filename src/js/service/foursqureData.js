@@ -1,12 +1,12 @@
 /**
  * Created by M004 on 9/7/2016.
  */
-angular.module('whoWhatWhere').factory('foursqureData', function () {
-    var image, rating, name, address, lan, lat;
+angular.module('whoWhatWhere').factory('foursquareData', function () {
+    var image, name, address, lan, lat;
     return {
-        "foursqureFilterData": function (data) {
+        "foursquareFilterData": function (data) {
             if (!_.isUndefined(data)) {
-                var filterYelpArray = [];
+                var filterFoursquareArray = [];
                 for (var i = 0; i < data.length; i++) {
                     if (_.isUndefined(data[i].image_url)) {
                         image = 'assets/images/no_image.png';
@@ -39,10 +39,10 @@ angular.module('whoWhatWhere').factory('foursqureData', function () {
                     } else {
                         phone = data[i].display_phone;
                     }
-                    filterYelpArray[i] = {image: image, name: name, address: address, lat: lat, lan: lan};
+                    filterFoursquareArray[i] = {image: image, name: name, address: address, lat: lat, lan: lan};
                 }
 
-                return filterYelpArray;
+                return filterFoursquareArray;
             }
         }
     }
