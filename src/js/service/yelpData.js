@@ -1,6 +1,3 @@
-/**
- * Created by M004 on 9/7/2016.
- */
 angular.module('whoWhatWhere').factory('yelpData', function () {
     var image, rating, name, address, lan, lat,phone;
     return {
@@ -10,7 +7,6 @@ angular.module('whoWhatWhere').factory('yelpData', function () {
                 for (var i = 0; i < data.length; i++) {
                     if (_.isUndefined(data[i].image_url)) {
                         image = 'assets/images/no_image.png';
-                        console.log('vk', data[i].image_url);
                     } else {
                         image = data[i].image_url;
                     }
@@ -44,6 +40,11 @@ angular.module('whoWhatWhere').factory('yelpData', function () {
                     } else {
                         phone = data[i].display_phone;
                     }
+                    if (_.isUndefined(data[i].url)) {
+                        url = 'Not Provided';
+                    } else {
+                        url = data[i].url;
+                    }
                     filterYelpArray[i] = {
                         image: image,
                         ratingImage: rating,
@@ -51,7 +52,8 @@ angular.module('whoWhatWhere').factory('yelpData', function () {
                         address: address,
                         lat: lat,
                         lan: lan,
-                        phone: phone
+                        phone: phone,
+                        url:url
                     };
                 }
 

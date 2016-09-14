@@ -9,9 +9,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/business',
             templateUrl: 'views/businessInfo.html',
             controller: 'mainController'
-        }).state('info', {
-            url: '/info',
-            templateUrl: 'views/info.html'
         }).state('home', {
              url: '/home',
              templateUrl: 'views/home.html'

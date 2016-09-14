@@ -1,6 +1,5 @@
 .bgColor {
     margin: 0px;
-    padding: 0px;
     background-image: url('../assets/images/background.jpg');
     font-family: 'Raleway', sans-serif;
     font-size: 11pt;
@@ -33,7 +32,7 @@
 }
 
 #searchItem {
-    height: 50px;
+    height: 22px;
     font-size: 20px;
     background: #fff;
     color: #42454e;
@@ -167,4 +166,22 @@ a {
 #homePage {
     height: 825px;
     background-image: url("../assets/images/homePage.png");
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+img {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }

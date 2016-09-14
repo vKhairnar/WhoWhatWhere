@@ -12,14 +12,13 @@ var yelp = new Yelp({
 });
 
 var fourSquare = new Dodge({
-    clientId: 'DEMCYUKAIBTKQ0Q2UMG33N2GLIQQU2RUXA2CA1YNSUKMGPY0',
-    clientSecret: 'K4ERZWBFEKBWCIVOJMWMZQJPOB3NO5TTX40UO1L02QE3D1TR'
+    clientId: 'UYRIOENZCDMQIPJ11NOFOFAY10VEP5SQH5O45KDGOFPS0RH4',
+    clientSecret: 'XOKP41JLNNVEVPWTQ3E53PJSOYVITDBL5SAROWSKVLIHMEVD'
 });
 
-function getData(options, callBack) {
+function loadData(options, callBack) {
     yelp.search({term: options.term, location: options.location})
         .then(function (ydata) {
-            console.log('main-data', ydata);
             fourSquare.venues.search({near: options.location, query: options.term}, function (err, venues) {
                 if (err) {
                     console.error(err)
@@ -38,7 +37,7 @@ function getData(options, callBack) {
 }
 app.get('/search', function (request, response) {
     var param = request.query;
-    getData(param, function (err, data) {
+    loadData(param, function (err, data) {
         if (err) {
             response.send({error: true});
         } else {
@@ -47,5 +46,5 @@ app.get('/search', function (request, response) {
     });
 });
 
-app.listen(2020);
-console.log('Running......2020');
+app.listen(2222);
+console.log('Running......2222');

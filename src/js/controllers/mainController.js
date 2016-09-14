@@ -1,4 +1,6 @@
-app.controller("mainController", function ($http, $scope, NgMap, yelpData, foursquareData,$location) {
+app.controller("mainController", function ($http, $scope, NgMap, yelpData, foursqureData, $location) {
+
+    $scope.menus = ["Foods","LifeStyle","Fun","Bar","Coffee","Restaurants"];
 
     NgMap.getMap().then(function (map) {
         $scope.map = map;
@@ -13,8 +15,8 @@ app.controller("mainController", function ($http, $scope, NgMap, yelpData, fours
         }
     };
 
-    $scope.hide = function () {
-        $scope.map.showInfoWindow('myInfoWindow', this);
+    $scope.hideCity = function () {
+        $scope.map.hideInfoWindow('myInfoWindow', this);
     };
     $scope.icon = {
         "scaledSize": [20, 40],
@@ -29,46 +31,44 @@ app.controller("mainController", function ($http, $scope, NgMap, yelpData, fours
         }).then(function successCallback(response) {
             var responceDataBoth = response.data;
             var yelpFiltereddata = yelpData.yelpFilterData(responceDataBoth.ydata);
-            var foresqFilteredData = foursquareData.foursquareFilterData(responceDataBoth.venues);
-            if(_.isUndefined(yelpFiltereddata)){
-                 margeData =  foresqFilteredData;
-            }else{
-                 margeData = _.unionBy(yelpFiltereddata, foresqFilteredData);
-            }
-            console.log('margeData',yelpFiltereddata);
+            var foresqFilteredData = foursqureData.foursqureFilterData(responceDataBoth.venues);
             var i = 0;
-            while (i < 25) {
-                $scope.personalData.push({
-                    name: margeData[i].name,
-                    address: margeData[i].address,
-                    ratingImage: margeData[i].ratingImage,
-                    image: margeData[i].image,
-                    phone: margeData[i].phone,
-                    lat: margeData[i].lat,
-                    lan: margeData[i].lan
-                });
-                i++
+            if (responceDataBoth.error != true) {
+                margeData = _.unionBy(yelpFiltereddata, foresqFilteredData);
+                while (i < 25) {
+                    $scope.personalData.push({
+                        name: margeData[i].name,
+                        address: margeData[i].address,
+                        ratingImage: margeData[i].ratingImage,
+                        image: margeData[i].image,
+                        phone: margeData[i].phone,
+                        lat: margeData[i].lat,
+                        lan: margeData[i].lan,
+                        url: margeData[i].url
+                    });
+                    i++
+                }
+            } else {
+                alert('Data Not Found');
+                $location.path('/home');
             }
+
         }, function errorCallback(response) {
             console.log('error', response);
         });
-
-        $scope.infoPage = function (evt, info) {
-            $scope.info = [];
-            $scope.info.push(info);
-        };
     }
 
-    $scope.clickItem = function (event) {
-        var clickId = event.target.id;
-        var itemName = clickId.split('#')[1];
+    $scope.onclickMenuItem = function (event) {
+        var itemName = event.target.id;
         var cityName = 'sydney';
         dataRequest(cityName, itemName);
     };
     $scope.onSubmitClick = function (event) {
-        if (!_.isUndefined($scope.getCity) && !_.isUndefined($scope.getItems)) {
+        if (!_.isUndefined($scope.city) && !_.isUndefined($scope.menuItem)) {
+            dataRequest($scope.city, $scope.menuItem);
             $location.path('/business');
-            dataRequest($scope.getCity, $scope.getItems);
+        }else {
+            alert('Please select item');
         }
     };
 });
