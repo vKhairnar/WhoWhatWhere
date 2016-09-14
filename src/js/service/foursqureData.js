@@ -19,7 +19,12 @@ angular.module('whoWhatWhere').factory('foursqureData', function () {
                         name = 'Not Provided';
                     } else {
                         name = data[i].name;
-                        url = 'www.' + name + '.com'
+                        var urlName = name.split(' ');
+                        var uName = "";
+                        for (var j = 0; j < urlName.length; j++) {
+                            uName = uName + urlName[j];
+                        }
+                        url = 'www.' + uName + '.com'
                     }
                     if (_.isUndefined(data[i].location.lat)) {
                         lat = 'Not Provided';

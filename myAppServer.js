@@ -18,14 +18,15 @@ var fourSquare = new Dodge({
 
 function loadData(options, callBack) {
     yelp.search({term: options.term, location: options.location})
-        .then(function (ydata) {
+        .then(function (yelpData) {
             fourSquare.venues.search({near: options.location, query: options.term}, function (err, venues) {
                 if (err) {
                     console.error(err)
                 } else {
+                    console.log('venue',venues);
                     var data = {
-                        ydata: ydata.businesses,
-                        venues: venues
+                        yelpData: yelpData.businesses,
+                        fourSquareData: venues
                     };
                     callBack(null, data);
                 }
@@ -35,6 +36,7 @@ function loadData(options, callBack) {
             callBack(error);
         });
 }
+
 app.get('/search', function (request, response) {
     var param = request.query;
     loadData(param, function (err, data) {

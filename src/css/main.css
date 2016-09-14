@@ -87,7 +87,6 @@ header h1 {
 .navbar {
     background-color: #f5821f;
     border: none;
-
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -100,6 +99,7 @@ header h1 {
 
 .navbar-default .navbar-nav > li > a:hover {
     color: black !important;
+    cursor: pointer;
 }
 
 .list {
@@ -122,6 +122,7 @@ header h1 {
     padding-top: 10px;
     color: #004099;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .address {
@@ -131,7 +132,7 @@ header h1 {
 .listContainer {
     overflow-y: scroll;
     border-radius: 25px;
-    height: 825px;
+    height: 823px;
 }
 
 a {
@@ -140,7 +141,7 @@ a {
 }
 
 .map {
-    height: 825px;
+    height: 823px;
     border: 1px solid gray;
 }
 
